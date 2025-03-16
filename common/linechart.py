@@ -10,109 +10,28 @@ import datetime
 
 from loguru import logger
 
-def linechart_years(data : list, title : str, xlabel : str, ylabel : str, legend_title : str, categories_data_name : str, 
-        x_data_name : str, y_data_name : str, point_data_name : str, source : str,
-        dark_mode : bool, show_plt : bool = False, save_plt : bool = True) -> None:
-    
-    if not categories_data_name:
-        raise ValueError(f"categories_data_name is empty")
-    if not x_data_name:
-        raise ValueError(f"x_data_name is empty")
-    if not y_data_name:
-        raise ValueError(f"y_data_name is empty")
-    if not point_data_name:
-        raise ValueError(f"point_data_name is empty")
-    
-    # Convert data to a DataFrame and to integer types
-    df = pd.DataFrame(data)
-    df[x_data_name] = df[x_data_name].astype(int)
-    df[y_data_name] = df[y_data_name].astype(int)
-
-    if dark_mode:
-        sns.set_theme(style="darkgrid")
-        plt.style.use("dark_background")
-    else:
-        sns.set_theme(style="whitegrid")
-        plt.style.use("default")
-
-    fig, ax = plt.subplots()
-    fig.set_size_inches(32, 18)
-    #fig.set_dpi(240)
-
-    # Determine unique brands and assign colors
-    brands = df[categories_data_name].unique()
-    palette = sns.color_palette("tab10", n_colors=len(brands))
-
-    # Plot each brand"s data and annotate with the point_data_name
-    for i, brand in enumerate(brands):
-        brand_df = df[df[categories_data_name] == brand].sort_values(x_data_name)
-        ax.plot(brand_df[x_data_name], brand_df[y_data_name], marker="o", label=brand,
-                color=palette[i], linewidth=2.5, markersize=8)
-        for _, row in brand_df.iterrows():
-            ax.text(row[x_data_name], row[y_data_name], row[point_data_name], fontsize=13,
-                    verticalalignment="bottom", horizontalalignment="right")
-
-    # Set up the y-axis to be logarithmic
-    ax.set_yscale("log", base=10)
-    ax.yaxis.set_major_locator(ticker.LogLocator(base=10.0, subs=[5,10], numticks=20))
-    #ax.yaxis.set_major_formatter(ticker.FormatStrFormatter("%d"))
-    y_fmt = ticker.FormatStrFormatter("%1.0e")
-    ax.yaxis.set_major_formatter(y_fmt)
-
-    # Add grid lines for clarity
-    ax.xaxis.grid(True, which="major", linestyle="--", linewidth=0.85)
-    ax.yaxis.grid(True, which="major", linestyle="--", linewidth=0.85)
-    ax.yaxis.set_minor_locator(ticker.LogLocator(base=10.0, subs=np.arange(2, 10)*0.1, numticks=20))
-    ax.yaxis.grid(True, which="minor", linestyle=":", linewidth=0.75)
-
-    # Configure x-axis ticks, one year before first and one year after last
-    min_year = df[x_data_name].min()
-    max_year = df[x_data_name].max()
-    extended_years = np.arange(min_year - 1, max_year + 2)
-    ax.set_xlim(min_year - 1, max_year + 1)
-    ax.set_xticks(extended_years)
-    ax.xaxis.set_minor_locator(ticker.NullLocator())
-
-    ax.set_xlabel(xlabel, fontsize=15)
-    ax.set_ylabel(ylabel, fontsize=15)
-    ax.set_title(title, fontsize=17)
-
-    ax.tick_params(axis="both", which="major", labelsize=13)
-    ax.legend(title=legend_title, loc="upper left")
-
-    ax.text(0.99, 0.01, source, fontsize=13, color="darkgray", transform=ax.transAxes,
-            horizontalalignment="right", verticalalignment="bottom")
-    
-    plt.tight_layout()
-
-    if save_plt:
-        now = datetime.datetime.now().strftime("%m_%d_%Y_%H_%M_%S_%f")[:-3]
-        plt.savefig(f"{now}.png", dpi=240)
-    
-    if show_plt:
-        plt.show()
-
-
-def linechart_generic(xdata : list, ydata : list, categorie_names : list, slices_label_points : list, title : str, xlabel : str, ylabel : str,
+def linechart_years(data : list, columns : list, categorie_names : list, slices_label_points : list, title : str, xlabel : str, ylabel : str,
                legend_title : str, source : str, 
                dark_mode : bool = True, show_plt : bool = False, save_plt : bool = True) -> None:
-    if not isinstance(ydata, np.ndarray):
-        ydata = np.array(ydata)
+    if not isinstance(data, np.ndarray):
+        data = np.array(data)
 
-    if len(ydata.shape) == 1:
-        ydata = np.array([ydata])
-        logger.warning(f"line_chart: ydata is not a 2d array, it will be converted to a 2d array")
+    if len(data.shape) == 1:
+        data = np.array([data])
+        logger.warning(f"line_chart: data is not a 2d array, it will be converted to a 2d array")
 
-    if len(xdata) != len(ydata[0]):
-        raise ValueError(f"Labels count ({len(xdata)}) is not equal to categorie_names count ({len(categorie_names)})")
+    if len(columns) != len(data[0]):
+        raise ValueError(f"Labels count ({len(columns)}) is not equal to categorie_names count ({len(categorie_names)})")
 
-    if len(categorie_names) != len(ydata):
-        raise ValueError(f"Size_names count ({len(categorie_names)}) is not equal to ydata count ({len(ydata)})")
+    if len(categorie_names) != len(data):
+        raise ValueError(f"Size_names count ({len(categorie_names)}) is not equal to data count ({len(data)})")
 
-    if len(xdata) != ydata.shape[1]:
-        raise ValueError(f"Labels count ({len(xdata)}) is not equal to ydata count ({ydata.shape[1]})")
+    if len(columns) != data.shape[1]:
+        raise ValueError(f"Labels count ({len(columns)}) is not equal to data count ({data.shape[1]})")
+    
+    columns = np.array(columns).astype(int)
 
-    df = pd.DataFrame(ydata, index=categorie_names, columns=xdata).T
+    df = pd.DataFrame(data, index=categorie_names, columns=columns).T
 
     #df = df.sort_values(by=["1"], ascending=False)
 
@@ -129,11 +48,33 @@ def linechart_generic(xdata : list, ydata : list, categorie_names : list, slices
 
     # fig.suptitle(title)
     palette = sns.color_palette("tab10", n_colors=len(categorie_names))
-    plot = sns.lineplot(data=df, ax=ax, dashes=False, marker="o", palette=palette)
+    plot = sns.lineplot(data=df, ax=ax, dashes=False, marker="o", palette=palette, estimator=None, sort=False)
+
+    # Set up the y-axis to be logarithmic
+    ax.set_yscale("log", base=10)
+    ax.yaxis.set_major_locator(ticker.LogLocator(base=10.0, subs=[5,10], numticks=20))
+    #ax.yaxis.set_major_formatter(ticker.FormatStrFormatter("%d"))
+    y_fmt = ticker.FormatStrFormatter("%1.0e")
+    ax.yaxis.set_major_formatter(y_fmt)
+
+    # Add grid lines for clarity
+    ax.xaxis.grid(True, which="major", linestyle="--", linewidth=0.85)
+    ax.yaxis.grid(True, which="major", linestyle="--", linewidth=0.85)
+    ax.yaxis.set_minor_locator(ticker.LogLocator(base=10.0, subs=np.arange(2, 10)*0.1, numticks=20))
+    ax.yaxis.grid(True, which="minor", linestyle=":", linewidth=0.75)
+
+    # Configure x-axis ticks, one year before first and one year after last
+    min_year = df.index.min()
+    max_year = df.index.max()
+    extended_years = np.arange(min_year - 1, max_year + 2)
+    ax.set_xlim(min_year - 1, max_year + 1)
+    ax.set_xticks(extended_years)
+    ax.xaxis.set_minor_locator(ticker.NullLocator())
 
     for i, size_name in enumerate(categorie_names):
-        for j, label in enumerate(xdata):
-            ax.text(j, ydata[i][j], slices_label_points[i][j], fontsize=13, verticalalignment="bottom", horizontalalignment="right")
+        for j, label in enumerate(columns):
+            ax.text(label, data[i][j], slices_label_points[i][j],
+                    fontsize=13, verticalalignment="bottom", horizontalalignment="right")
 
     ax.set_xlabel(xlabel, fontsize=15)
     ax.set_ylabel(ylabel, fontsize=15)
@@ -145,7 +86,7 @@ def linechart_generic(xdata : list, ydata : list, categorie_names : list, slices
     ax.text(0.99, 0.01, source, fontsize=13, color="darkgray", transform=ax.transAxes,
             horizontalalignment="right", verticalalignment="bottom")
     
-    plt.tight_layout()
+    plt.subplots_adjust(left=0.05, right=0.95, top=0.95, bottom=0.05)
 
     if save_plt:
         now = datetime.datetime.now().strftime("%m_%d_%Y_%H_%M_%S_%f")[:-3]
@@ -154,7 +95,69 @@ def linechart_generic(xdata : list, ydata : list, categorie_names : list, slices
     if show_plt:
         plt.show()
 
-def pie_chart_generic(labels : list, sizes : list, title : str, source : str, display_autopct : bool = True, display_legend : bool = True, sort : bool = True, display_labels : bool = False, 
+
+def linechart_generic(data : list, columns : list, categorie_names : list, slices_label_points : list, title : str, xlabel : str, ylabel : str,
+               legend_title : str, source : str, 
+               dark_mode : bool = True, show_plt : bool = False, save_plt : bool = True) -> None:
+    if not isinstance(data, np.ndarray):
+        data = np.array(data)
+
+    if len(data.shape) == 1:
+        data = np.array([data])
+        logger.warning("line_chart: data is not a 2d array, converting to 2d...")
+
+    if len(columns) != len(data[0]):
+        raise ValueError(f"Labels count ({len(columns)}) != categorie_names count ({len(categorie_names)})")
+
+    if len(categorie_names) != len(data):
+        raise ValueError(f"Size_names count ({len(categorie_names)}) != data count ({len(data)})")
+
+    if len(columns) != data.shape[1]:
+        raise ValueError(f"Labels count ({len(columns)}) != data count ({data.shape[1]})")
+
+    columns = np.array(columns).astype(int)
+    df = pd.DataFrame(data, index=categorie_names, columns=columns).T
+
+    if dark_mode:
+        sns.set_theme(style="darkgrid")
+        plt.style.use("dark_background")
+    else:
+        sns.set_theme(style="whitegrid")
+        plt.style.use("default")
+
+    fig, ax = plt.subplots()
+    fig.set_size_inches(32, 18)
+
+    palette = sns.color_palette("tab10", n_colors=len(categorie_names))
+    sns.lineplot(data=df, ax=ax, dashes=False, marker="o", palette=palette, estimator=None, sort=False)
+
+    # Set axis limits and ticks to ensure text is visible
+    ax.set_xlim(columns[0] - 1, columns[-1] + 1)
+    ax.set_xticks(columns)
+
+    for i, size_name in enumerate(categorie_names):
+        for j, label in enumerate(columns):
+            ax.text(label, data[i][j], slices_label_points[i][j],
+                    fontsize=13, verticalalignment="bottom", horizontalalignment="right")
+
+    ax.set_xlabel(xlabel, fontsize=15)
+    ax.set_ylabel(ylabel, fontsize=15)
+    ax.set_title(title, fontsize=17)
+    ax.tick_params(axis="both", which="major", labelsize=13)
+    ax.legend(title=legend_title, loc="upper left")
+    ax.text(0.99, 0.01, source, fontsize=13, color="darkgray", transform=ax.transAxes,
+            horizontalalignment="right", verticalalignment="bottom")
+    
+    plt.subplots_adjust(left=0.05, right=0.95, top=0.95, bottom=0.05)
+
+    if save_plt:
+        now = datetime.datetime.now().strftime("%m_%d_%Y_%H_%M_%S_%f")[:-3]
+        plt.savefig(f"{now}.png", dpi=240)
+    
+    if show_plt:
+        plt.show()
+
+def pie_chart_generic(sizes : list, labels : list, title : str, source : str, display_autopct : bool = True, display_legend : bool = True, sort : bool = True, display_labels : bool = False, 
         dark_mode : bool = True, show_plt : bool = False, save_plt : bool = True) -> None:
 
     if sort:
