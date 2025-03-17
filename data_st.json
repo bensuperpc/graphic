@@ -3,7 +3,6 @@
     "xlabel": "Year",
     "ylabel": "Single-thread score",
     "legend_title": "Brands",
-    "categories_data_name": "brand",
     "x_data_name": "years",
     "y_data_name": "score",
     "point_data_name": "name",
@@ -11,271 +10,421 @@
     "dark_mode": true,
     "data": [
         {
-            "brand": "Intel",
+            "brand": "Intel (High Mid CPU)",
             "name": "Pentium 4 1.5",
             "years": "2000",
             "score": 228
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High CPU)",
+            "name": "",
+            "years": "2000",
+            "score": 228
+        },
+        {
+            "brand": "Intel (High Mid CPU)",
             "name": "Pentium 4 2.0",
             "years": "2001",
             "score": 349
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High CPU)",
+            "name": "",
+            "years": "2001",
+            "score": 349
+        },
+        {
+            "brand": "Intel (High Mid CPU)",
             "name": "Pentium 4 2.8",
             "years": "2002",
             "score": 509
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High CPU)",
+            "name": "",
+            "years": "2002",
+            "score": 509
+        },
+        {
+            "brand": "Intel (High Mid CPU)",
             "name": "Pentium 4 HT 3.2",
             "years": "2003",
             "score": 547
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High CPU)",
+            "name": "",
+            "years": "2003",
+            "score": 547
+        },
+        {
+            "brand": "Intel (High Mid CPU)",
             "name": "Pentium 4 HT 3.8",
             "years": "2004",
             "score": 674
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High CPU)",
+            "name": "",
+            "years": "2004",
+            "score": 674
+        },
+        {
+            "brand": "Intel (High Mid CPU)",
             "name": "Pentium D 830",
             "years": "2005",
             "score": 574
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High CPU)",
+            "name": "",
+            "years": "2005",
+            "score": 574
+        },
+        {
+            "brand": "Intel (High Mid CPU)",
             "name": "Pentium Extrem 965",
             "years": "2006",
             "score": 818
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High CPU)",
+            "name": "",
+            "years": "2006",
+            "score": 818
+        },
+        {
+            "brand": "Intel (High Mid CPU)",
             "name": "Core2 Quad Q6700",
             "years": "2007",
             "score": 1077
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High CPU)",
+            "name": "",
+            "years": "2007",
+            "score": 1077
+        },
+        {
+            "brand": "Intel (High Mid CPU)",
             "name": "Core2 Quad Q6850",
             "years": "2008",
             "score": 1210
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High CPU)",
+            "name": "i7-965",
+            "years": "2008",
+            "score": 1475
+        },
+        {
+            "brand": "Intel (High Mid CPU)",
             "name": "Core2 Quad X9775",
             "years": "2009",
             "score": 1451
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High CPU)",
+            "name": "i7-975",
+            "years": "2009",
+            "score": 1500
+        },
+        {
+            "brand": "Intel (High Mid CPU)",
             "name": "i7-880",
             "years": "2010",
             "score": 1450
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High CPU)",
+            "name": "i7-980X",
+            "years": "2010",
+            "score": 1525
+        },
+        {
+            "brand": "Intel (High Mid CPU)",
             "name": "i7-2700K",
             "years": "2011",
             "score": 1823
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High CPU)",
+            "name": "i7-3960X",
+            "years": "2011",
+            "score": 1789
+        },
+        {
+            "brand": "Intel (High Mid CPU)",
             "name": "i7-3770K",
             "years": "2012",
             "score": 2071
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High CPU)",
+            "name": "i7-3970X",
+            "years": "2012",
+            "score": 1849
+        },
+        {
+            "brand": "Intel (High Mid CPU)",
             "name": "i7-4770K",
             "years": "2013",
             "score": 2161
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High CPU)",
+            "name": "i7-4960X",
+            "years": "2013",
+            "score": 2073
+        },
+        {
+            "brand": "Intel (High Mid CPU)",
             "name": "i7-4790K",
             "years": "2014",
             "score": 2466
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High CPU)",
+            "name": "i7-5960X",
+            "years": "2014",
+            "score": 2076
+        },
+        {
+            "brand": "Intel (High Mid CPU)",
             "name": "i7-5775C",
             "years": "2015",
             "score": 2289
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High Mid CPU)",
             "name": "i7-6700K",
             "years": "2016",
             "score": 2505
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High CPU)",
+            "name": "i7-6950X",
+            "years": "2016",
+            "score": 2337
+        },
+        {
+            "brand": "Intel (High Mid CPU)",
             "name": "i7-7700K",
             "years": "2017",
             "score": 2712
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High CPU)",
+            "name": "i7-7980XE",
+            "years": "2017",
+            "score": 2458
+        },
+        {
+            "brand": "Intel (High Mid CPU)",
             "name": "i7-8700K",
             "years": "2018",
             "score": 2722
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High Mid CPU)",
             "name": "i7-9700K",
             "years": "2019",
             "score": 2870
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High CPU)",
+            "name": "i9-9990XE",
+            "years": "2019",
+            "score": 2970
+        },
+        {
+            "brand": "Intel (High Mid CPU)",
             "name": "i7-10700K",
             "years": "2020",
             "score": 3046
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High CPU)",
+            "name": "i9-10980XE",
+            "years": "2020",
+            "score": 2653
+        },
+        {
+            "brand": "Intel (High Mid CPU)",
             "name": "i7-11700K",
             "years": "2021",
             "score": 3395
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High CPU)",
+            "name": "i7-11900K",
+            "years": "2021",
+            "score": 3510
+        },
+        {
+            "brand": "Intel (High Mid CPU)",
             "name": "i7-12700K",
             "years": "2022",
             "score": 4020
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High CPU)",
+            "name": "i9-12900K",
+            "years": "2022",
+            "score": 4144
+        },
+        {
+            "brand": "Intel (High Mid CPU)",
             "name": "i7-13700K",
             "years": "2023",
             "score": 4344
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High CPU)",
+            "name": "i9-13900K",
+            "years": "2023",
+            "score": 4613
+        },
+        {
+            "brand": "Intel (High Mid CPU)",
             "name": "i7-14700K",
             "years": "2024",
             "score": 4480
         },
         {
-            "brand": "Intel",
+            "brand": "Intel (High CPU)",
+            "name": "i9-14900K",
+            "years": "2024",
+            "score": 4713
+        },
+        {
+            "brand": "Intel (High Mid CPU)",
             "name": "Core Ultra 7-265K",
             "years": "2025",
             "score": 4855
         },
         {
-            "brand": "AMD",
+            "brand": "Intel (High CPU)",
+            "name": "Core Ultra 9-285K",
+            "years": "2025",
+            "score": 5085
+        },
+        {
+            "brand": "AMD (High Mid CPU)",
+            "name": "Athlon 1.2",
+            "years": "2000",
+            "score": 196
+        },
+        {
+            "brand": "AMD (High Mid CPU)",
             "name": "Athlon XP 1900+",
             "years": "2001",
             "score": 312
         },
         {
-            "brand": "AMD",
+            "brand": "AMD (High Mid CPU)",
             "name": "Athlon XP 2800+",
             "years": "2002",
             "score": 408
         },
         {
-            "brand": "AMD",
+            "brand": "AMD (High Mid CPU)",
             "name": "Athlon 64 3200+",
             "years": "2003",
             "score": 621
         },
         {
-            "brand": "AMD",
+            "brand": "AMD (High Mid CPU)",
             "name": "Athlon 64 4000+",
             "years": "2004",
             "score": 732
         },
         {
-            "brand": "AMD",
+            "brand": "AMD (High Mid CPU)",
             "name": "Athlon 64 X2 4800+",
             "years": "2005",
             "score": 876
         },
         {
-            "brand": "AMD",
+            "brand": "AMD (High Mid CPU)",
             "name": "Athlon 64 X2 5000+",
             "years": "2006",
             "score": 904
         },
         {
-            "brand": "AMD",
+            "brand": "AMD (High Mid CPU)",
             "name": "Phenom X4 9600",
             "years": "2007",
             "score": 892
         },
         {
-            "brand": "AMD",
+            "brand": "AMD (High Mid CPU)",
             "name": "Phenom X4 9850B",
             "years": "2008",
             "score": 992
         },
         {
-            "brand": "AMD",
+            "brand": "AMD (High Mid CPU)",
             "name": "Phenom 2 X4 965",
             "years": "2009",
             "score": 1365
         },
         {
-            "brand": "AMD",
+            "brand": "AMD (High Mid CPU)",
             "name": "Phenom 2 X6 1090T",
             "years": "2010",
             "score": 1453
         },
         {
-            "brand": "AMD",
+            "brand": "AMD (High Mid CPU)",
             "name": "FX 8150",
             "years": "2011",
             "score": 1434
         },
         {
-            "brand": "AMD",
+            "brand": "AMD (High Mid CPU)",
             "name": "FX 8350",
             "years": "2012",
             "score": 1582
         },
         {
-            "brand": "AMD",
+            "brand": "AMD (High Mid CPU)",
             "name": "FX 9590",
             "years": "2013",
             "score": 1811
         },
         {
-            "brand": "AMD",
+            "brand": "AMD (High Mid CPU)",
             "name": "R7 1800x",
             "years": "2017",
             "score": 2197
         },
         {
-            "brand": "AMD",
+            "brand": "AMD (High Mid CPU)",
             "name": "R7 2700x",
             "years": "2018",
             "score": 2419
         },
         {
-            "brand": "AMD",
+            "brand": "AMD (High Mid CPU)",
             "name": "R7 3800x",
             "years": "2019",
             "score": 2715
         },
         {
-            "brand": "AMD",
+            "brand": "AMD (High Mid CPU)",
             "name": "R7 5800x",
             "years": "2020",
             "score": 3445
         },
         {
-            "brand": "AMD",
+            "brand": "AMD (High Mid CPU)",
             "name": "R7 7700x",
             "years": "2022",
             "score": 4193
         },
         {
-            "brand": "AMD",
+            "brand": "AMD (High Mid CPU)",
             "name": "R7 9700x",
             "years": "2024",
             "score": 4655

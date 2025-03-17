@@ -74,7 +74,7 @@ def linechart_years(data : list, columns : list, categorie_names : list, slices_
     for i, size_name in enumerate(categorie_names):
         for j, label in enumerate(columns):
             ax.text(label, data[i][j], slices_label_points[i][j],
-                    fontsize=13, verticalalignment="bottom", horizontalalignment="right")
+                    fontsize=12, verticalalignment="bottom", horizontalalignment="right")
 
     ax.set_xlabel(xlabel, fontsize=15)
     ax.set_ylabel(ylabel, fontsize=15)

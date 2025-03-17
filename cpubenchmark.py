@@ -1,10 +1,49 @@
+import json
+
 import common.linechart as lc
 
 if __name__ == "__main__":
-    #reader.json_linechart_years("data_mt.json")
-    #reader.json_linechart_years("data_st.json")
+    with open("data_mt.json", "r") as file:
+        json_data = json.load(file)
 
-    #exit(0)
+    if not json_data:
+        print("Error: No data")
+    
+    linechart_years = []
+    linechart_brands = []
+    for i, cpu in enumerate(json_data["data"]):
+        if cpu["years"] not in linechart_years:
+            linechart_years.append(cpu["years"])
+        if cpu["brand"] not in linechart_brands:
+            linechart_brands.append(cpu["brand"])
+    
+    linechart_years.sort()
+    linechart_brands.sort()
+
+    linechart_slices = []
+    linechart_slices_label_points = []
+
+    for i, brand in enumerate(linechart_brands):
+        linechart_slices.append([])
+        linechart_slices_label_points.append([])
+        for j, year in enumerate(linechart_years):
+            linechart_slices[i].append(0)
+            linechart_slices_label_points[i].append(0)
+            for cpu in json_data["data"]:
+                if cpu["years"] == year and cpu["brand"] == brand:
+                    linechart_slices[i][j] = cpu["score"]
+                    linechart_slices_label_points[i][j] = cpu["name"]
+                    break
+            # If no data for this year, get the previous year data
+            if linechart_slices[i][j] == 0 and j > 0:
+                linechart_slices[i][j] = linechart_slices[i][j - 1]
+                linechart_slices_label_points[i][j] = ""
+
+    lc.linechart_years(linechart_slices, linechart_years, linechart_brands, linechart_slices_label_points, json_data["title"], json_data["xlabel"], json_data["ylabel"], json_data["legend_title"], json_data["source"], True, True, True)
+
+
+    exit(0)
+
 
     linechart_days_of_week = ["2018", "2019", "2020", "2021", "2022", "2023", "2024"]
 
